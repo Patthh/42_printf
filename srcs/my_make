@@ -1,0 +1,25 @@
+NAME = libftprintf.a
+SOURCES =  \
+	ft_itoa.c  ft_print_hexa.c  ft_print_unsigned.c  ft_print_var.c  ft_printf.c  ft_ptr.c
+OBJECTS = $(SOURCES:.c=.o)
+
+CC = cc
+CFLAGS = -Wall -Wextra -Werror
+
+all: $(NAME)
+
+$(NAME): $(OBJECTS)
+	$(AR) -r $@ $?
+
+%.o: %.c
+	$(CC) -c $(CFLAGS) $?
+
+clean:
+	rm -f $(OBJECTS)
+
+fclean: clean
+	rm -f $(NAME)
+
+re: fclean all
+
+.PHONY: all, clean, fclean, re
