@@ -1,55 +1,37 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: loswaans <swaanslouis@163.com>             +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/02/03 14:52:12 by loswaans          #+#    #+#              #
-#    Updated: 2024/02/09 17:20:02 by loswaans         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+NAME = libftprintf.a
+SOURCES = ft_itoa.c ft_print_hex.c ft_print_unsigned.c ft_print_variables.c ft_printf.c ft_pointer.c
+HDR = ft_printf.h
+OBJECTS = $(SOURCES:.c=.o)
 
-HDRDIR   = includes
-SRCDIR   = srcs
-OBJDIR   = objs
+CC = cc
+CFLAGS = -Wall -Wextra -Werror
 
-SRCS     = $(wildcard $(SRCDIR)/*.c)
-OBJS     = $(SRCS:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
-NAME     = libftprintf.a
-CC       = cc
-CFLAGS   = -Wall -Wextra -Werror
-RM       = rm -rf
-AR       = ar rcs
-
-DEFCOLOR = \033[0;39m
-GREEN    = \033[0;92m
-YELLOW   = \033[0;93m
-BLUE     = \033[0;94m
-CYAN     = \033[0;96m
+# ANSI color codes
+CYAN := \033[0;36m
+RED := \033[0;31m
+YELLOW := \033[0;33m
+GREEN := \033[0;32m
+NC := \033[0m
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
-	@$(AR) $(NAME) $(OBJS)
-	@echo "$(GREEN)ft_printf library has been successfully compiled$(DEFCOLOR)"
+$(NAME): $(OBJECTS)
+	$(AR) -r $@ $^
+	@printf "$(GREEN)Successfully created $(NAME)$(NC)\n"
 
-$(OBJDIR)/%.o: $(SRCDIR)/%.c
-	@mkdir -p $(OBJDIR)
-	@echo "$(YELLOW)Compiling: $< $(DEFCOLOR)"
-	@$(CC) $(CFLAGS) -I $(HDRDIR) -c $< -o $@
+%.o: %.c $(HDR)
+	$(CC) -c $(CFLAGS) $<
+	@printf "$(CYAN)Successfully compiled $<$(NC)\n"
 
 clean:
-	@$(RM) $(OBJS)
-	@$(RM) $(OBJDIR)
-	@echo "$(BLUE)ft_printf object files and objs folder cleaned!$(DEFCOLOR)"
+	rm -f $(OBJECTS)
+	@printf "$(RED)Successfully removed object files$(NC)\n"
 
 fclean: clean
-	@$(RM) $(NAME)
-	@echo "$(CYAN)ft_printf library has been cleaned!$(DEFCOLOR)"
+	rm -f $(NAME)
+	@printf "$(YELLOW)Successfully removed $(NAME)$(NC)\n"
 
 re: fclean all
-	@echo "$(GREEN)Cleaned and rebuilt successfully!$(DEFCOLOR)"
 
 .PHONY: all clean fclean re
 

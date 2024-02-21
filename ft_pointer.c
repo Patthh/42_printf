@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ptr.c                                           :+:      :+:    :+:   */
+/*   ft_pointer.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pracksaw <pracksaw@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 20:00:09 by pracksaw          #+#    #+#             */
-/*   Updated: 2024/02/09 18:53:48 by pracksaw         ###   ########.fr       */
+/*   Updated: 2024/02/21 16:42:59 by pracksaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,12 @@ static void	ft_put_hexx(unsigned long long n)
 	}
 }
 
-int	ft_ptr(unsigned long long n)
+int	ft_pointer(unsigned long long n)
 {
 	int	len;
 	int	temp;
 
+	temp = 0;
 	if (!n)
 	{
 		write(1, "(nil)", 5);

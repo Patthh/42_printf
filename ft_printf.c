@@ -6,7 +6,7 @@
 /*   By: pracksaw <pracksaw@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 17:41:14 by pracksaw          #+#    #+#             */
-/*   Updated: 2024/02/09 20:39:01 by pracksaw         ###   ########.fr       */
+/*   Updated: 2024/02/21 16:43:37 by pracksaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static size_t	ft_format(va_list args, const char form)
 	else if (form == 'x' || form == 'X')
 		len = ft_print_hex(va_arg(args, unsigned int), form);
 	else if (form == 'p')
-		len = ft_ptr(va_arg(args, unsigned long long));
+		len = ft_pointer(va_arg(args, unsigned long long));
 	return (len);
 }
 
